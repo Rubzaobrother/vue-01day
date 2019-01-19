@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{mag}}</p>
+
+        <input type="button" value="酒" @click="start">
+        <input type="button" value="烟" @click="end">
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                mag: '给我一瓶酒呀  给我一支烟 说走就走 有的是时间',
+                timerID: '',
+            },
+            methods: {
+                start() {
+                    clearInterval(this.timerID),
+                    this.timerID = setInterval(() => {
+                        let from = this.mag.substr(0, 1);
+                        let over = this.mag.substr(1);
+                        this.mag = over + from;
+                    }, 100);
+                },
+                end() {
+                    clearInterval(this.timerID)
+                }
+            },
+        })    
+    </script>
+</body>
+
+</html>
