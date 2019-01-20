@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p> {{ msg | msgFilter('啊啊啊啊啊啊啊')}} </p>
+
+        <input type="text" :value= "msg | msgFilter('呃呃呃呃呃呃呃呃呃呃呃呃')">
+    </div>
+
+    <script>
+
+        //定义全局过滤器
+        //参数1: 过滤器名称
+        //参数2: 回调函数,回调函数中第一个参数时管道符左边的数据 第二个参数器都是过滤器调用时传入的参数
+        Vue.filter('msgFilter', function(msg, str) {
+            return msg.replace('张国荣', str)
+        })
+        
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'万年不遇张国荣',
+            },
+            methods: {
+                
+            },
+        })
+    </script>
+</body>
+</html>
