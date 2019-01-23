@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <com></com>
+    </div>
+    <div id="app1">
+        <com></com>
+        <login></login>
+    </div>
+    <template id="tmp">
+        <div>
+            <h1>啊啊啊啊啊啊啊啊啊啊啊</h1>
+            <span>ccccccccccc</span>
+        </div>
+    </template>
+
+    <template id="tmp1">
+        <div>
+            <h1>私有login组件</h1>
+        </div>
+    </template>
+    <script>
+        Vue.component('com', {
+            template: "#tmp"
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+        })
+
+        let vm1 = new Vue({
+            el: '#app1',
+            data: {},
+            methods:{},
+            components:{
+                // 定义实例内部的私有组件
+                 login:{
+                     template:'#tmp1'
+                 }
+            }
+        })
+    </script>
+</body>
+
+</html>

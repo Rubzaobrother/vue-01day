@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <com></com>
+    </div>
+    <template id="tmp">
+        <div>
+            <h1>啊啊啊啊啊啊啊啊啊啊啊</h1>
+            <span>ccccccccccc</span>
+        </div>
+    </template>
+    <script>
+        Vue.component('com', {
+            template: "#tmp"
+        })
+        let vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+        })
+    </script>
+</body>
+
+</html>

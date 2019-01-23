@@ -1,0 +1,90 @@
+动画:
+transition元素 把 需要被动画控制的元素 包裹起来
+
+过滤的类名:
+动画执行之前和 结束之后的元素状态
+v-enter  进入之前 元素 的起始状态 此时还没有进入
+v-leave-to 是动画离开之后 离开的终止状态 此时 元素 动画已经结束 
+
+v-enter指定入场动画的开始位置:
+	入场动画只需要指定起点 不需要目标
+	入场动画指定了起点 马上就就会被移除掉 移除后元素自然就会奔着原本的位置去
+
+v-leave-to值的是离场动画结束的位置
+	离场动画只需要指定目标 不需要起点
+	因为元素本身的位置就是起点, 只需要指定目标 元素就会奔着目标持续过度	
+
+执行过度动画的样式 
+v-enter-active   入场动画的时间段
+v-leave-active   离场动画的时间段
+
+案例:
+	1.先将要执行动画的元素使用transition标签包裹
+	2.给4个过度类名加样式 完成动画
+
+如果项目中有多个地方要用
+通过给transition 标签添加 name 属性 可以 自己定义 V-的前缀
+
+动画钩子函数的第一个参数: el , 表示要执行动画的那个DOM元素是个原声的js DOM对象 可以认为是,el是 通过 document.getElementById('') 方式获取到的的原声JS DOM 对象
+
+beforeEnter : 表示动画入场之前 此时 动画尚未开始,可以在beforeEnter 中设置元素开始动画之前的起始样式
+
+enter : 表示动画开始之后的样式 ,可以设置 动画完成之后的结束状态
+ enter (el, done) done其实就是afterEnter这个函数 也就是说done 是afterEnter 函数的引用	
+
+el.offsetWidth : 没有实际的作用 但是 如果不写出不来动画效果 可以认为el.offsetWidth  会强制动画刷新
+
+afterEnter: 动画完成之后 会调用 afterEnter
+
+
+列表动画
+不同于单元素动画,需要使用transition-group
+transition标签不会渲染HTML元素,而transition-group会默认渲染一个span元素出来
+
+
+实现列表过度的时候 如果需要过度的元素 是通过 v-for渲染出来的 不能使用 transition包裹 需要使用 transitionGroup
+
+组件必须要注册完成后才可以使用
+组件如果注册时使用的驼峰命名,使用时需要改成'-'连接
+组件的模板'template'中有且只能有一个根节点
+
+Vue.component('组件的名称', 创建出来的组件模板对象)
+
+Vue.component 第一个参数:组件的名称,将来在引用组件的时候,就是一个 标签形式来引入它
+	第二个参数: Vue.extend创建的组件,其中template属性 就是组件将来要展现的html内容
+
+创建组件
+1. Vue.extend方法
+2.直接使用带有template属性的对象
+  Vue.component('com', {
+            template:
+             "<div><h1>直接使用Vue.component 创建组件</h1><span>123</span></div>"
+        })
+
+3.在app区域外定义好模板后直接通过template属性引用
+
+//创建组件的第三种方式,同样是对象 但是template属性指向一个模板id即可
+//需要在app区域外定义好模板这样作法有智能提示
+   <div id="app">
+        <com></com>
+    </div>
+    <template id="tmp">
+        <div>
+            <h1>啊啊啊啊啊啊啊啊啊啊啊</h1>
+            <span>ccccccccccc</span>
+        </div>
+    </template>
+    <script>
+        Vue.component('com', {
+            template: "#tmp"
+        })
+
+
+全局组件
+Vue.component()
+
+全局过滤器
+Vue.filter()
+
+全局址栏
+Vue.directive()
