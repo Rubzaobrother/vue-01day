@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=on, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="button" value="获取元素" @click='getElement'>
+            <h3 id="myh3" ref="myh3">往事不要再提人生一多风雨</h3>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                methods: {
+                    getElement(){
+                        console.log(this.$refs.myh3.innerText)
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>
